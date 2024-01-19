@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import apiService from '../services/apiServices';
+import apiServicelogin from '../services/apiSerivcesLogin';
 const styles = {
     section: {
         fontSize: "18px",
@@ -15,48 +16,56 @@ const styles = {
 const Login = () => {
     const is_login = localStorage.getItem('token');
     let navigate = useNavigate();
-    
+
     const [detail, setDetails] = useState({
         email: '',
         password: '',
     });
 
-    const getUserInfo = async (username) => {
+    const getUserInfo = async () => {
 
         try {
-            const response = await apiService.get(`auth/userDetail/${username}`);
+            const response = await apiService.get('auth/userDetail/');
             const { role } = response.data;
-            localStorage.setItem('role', role);
-            console.log(role);
+            const { username } = response.data;
 
+            localStorage.setItem('username', username);
+            localStorage.setItem('role', role);
+            console.log(response.data);
+            
+            if(role === "ADMIN"){
+                navigate("/api/admin")
+            } else{
+                navigate("/api")
+            }
+            window.location.reload();
         } catch (error) {
             console.error("Error While getting user Detail: ", error);
         }
 
     };
 
+    function updateHeaders(token) {
+        apiService.defaults.headers['Authorization'] = `Bearer ${token}`;
+    };
+
     const handleLogin = async () => {
         try {
-            const response = await apiService.post('/auth/signin', detail)
-            const { token } = response.data;
-            const { username } = response.data;
-            localStorage.setItem('username', username);
-            localStorage.setItem('token', token);
-            
-            await getUserInfo(username);
+            const response = await apiServicelogin.post('/auth/signin', detail);
             setDetails(' ');
-            console.log("Logged in Successfully"); 
-            const userrole = localStorage.getItem('role')
-            if (userrole === "ADMIN") {
-                navigate("/api/admin");
-            } else {
-                navigate("/api")
-            }
+            localStorage.setItem('token', response.data.token);
+            console.log(localStorage.getItem('token'));
+            updateHeaders(localStorage.getItem('token'));
+            getUserInfo();
+
+            console.log("Logged in Successfully");
+
+
         } catch (error) {
             console.error('Login failed', error);
         }
     };
-    
+
 
     return (
         <div style={styles.section}>
@@ -72,7 +81,7 @@ const Login = () => {
 
                     </div>
             }
-            
+
 
         </div>
     );

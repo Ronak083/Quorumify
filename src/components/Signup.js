@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import '../App.css';
-import apiService from '../services/apiServices';
+import apiServicelogin from '../services/apiSerivcesLogin';
 const styles = {
     section: {
         fontSize: "18px",
@@ -13,14 +13,14 @@ const styles = {
 
 const Signup = () => {
     const [detail, setDetails] = useState({
-        firstName: '',
-        lastName: '',
+        firstname: '',
+        lastname: '',
         email: '',
         password: '',
     });
     const submit = async () => {
         try {
-            const response = await apiService.post('/auth/signup', detail);
+            const response = await apiServicelogin.post('/auth/signup', detail);
             console.log('Signup Successful:', response.data)
             navigate("/api/auth/signin")
 
@@ -39,8 +39,8 @@ const Signup = () => {
                     :
                     <>
                         <div className="form">
-                            <input className="form-control" onChange={(e) => setDetails({ ...detail, firstName: e.target.value })} type="text" placeholder="firstname" required />
-                            <input className="form-control" onChange={(e) => setDetails({ ...detail, lastName: e.target.value })} type="text" placeholder="lastname" required />
+                            <input className="form-control" onChange={(e) => setDetails({ ...detail, firstname: e.target.value })} type="text" placeholder="firstname" required />
+                            <input className="form-control" onChange={(e) => setDetails({ ...detail, lastname: e.target.value })} type="text" placeholder="lastname" required />
                             <input className="form-control" onChange={(e) => setDetails({ ...detail, email: e.target.value })} type="email" placeholder="email" required />
                             <input className="form-control" onChange={(e) => setDetails({ ...detail, password: e.target.value })} type="password" placeholder="password" required />
                             <button className="btn btn-primary" onClick={submit}>Login</button>

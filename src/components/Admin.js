@@ -34,10 +34,22 @@ const Admin = () => {
         fetchData();
     }, []);
 
+    const getdata = async () => {
+        try {
+            const response = await apiService.get('admin/users');
+            setData(response.data);
+
+        } catch (error) {
+            console.error("error Fetching data: ", error);
+        }
+    }
+
+
+
     const updateUserToModerator = async (id) => {
         try {
             const response = await apiService.put(`admin/updateRoleToMOD/${id}`);
-            setData(response.data);
+            getdata();
         } catch (error) {
             console.error("Error while Updating Role: ", error);
         }
@@ -45,8 +57,8 @@ const Admin = () => {
 
     const updateUserToUser = async (id) => {
         try {
-            const response = await apiService.put(`admin/updateRoleToUSR/${id}`);
-            setData(response.data);
+            const response = await apiService.put(`admin/updateRoleToUser/${id}`);
+            getdata();
         } catch (error) {
             console.error("Error while Updating Role: ", error);
         }

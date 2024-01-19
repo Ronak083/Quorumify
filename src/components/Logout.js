@@ -1,5 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+
 const styles = {
     section: {
         fontSize: "18px",
@@ -14,21 +15,24 @@ const Logout = () => {
     let navigate = useNavigate();
 
     const logout = () => {
-        localStorage.clear();
-        navigate("/api")
+        console.log("Logging out:" + localStorage.getItem('username') )
+        localStorage.clear();  
+        navigate("/api");                   
+        window.location.reload();
     }
 
 
     return (
         <div style={styles.section}>
             <h2 className="">Logout</h2>
+            
             {
                 is_login ? <>
-                    <p> <h4>Are sure, you want to really logout</h4> <Button onClick={logout}>Yes</Button> </p>
+                    <h4> <p>Are you sure, you want to really logout</p> <Button onClick={logout}>Yes</Button> </h4>
 
                 </>
                     :
-                    <> You are Already Logged-out, Login First</>
+                    <>You are Already Logged-out, Login First</>
             }
 
         </div>

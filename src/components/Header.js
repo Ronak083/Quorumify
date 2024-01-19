@@ -6,21 +6,35 @@ import { Link } from 'react-router-dom';
 
 
 function Header() {
+    const is_login = localStorage.getItem('token');
+    const is_user = localStorage.getItem('role');
     return (
         <div>
-            <Navbar bg="dark" data-bs-theme="dark">
+            <Navbar className="headerbar" bg="dark" data-bs-theme="dark" >
                 <Container>
                     <Navbar.Brand href="/api">MyQuora</Navbar.Brand>
-                    <Nav className="me-auto navbar_wrapper">
-                        <Link to="/api/auth/signup">Signup</Link>
-                        <Link to="/api/auth/signin">Login</Link>
-                        <Link to="/api/admin">Admin Panel</Link>
-                        <Link to="/api/logout">Logout</Link>
-                        <Link to="/api">User: {localStorage.getItem('username')}</Link>
+                    <Nav className="me-auto navbar_wrapper headerbar">
+                        {
+                            is_login ? <>
+                                {
+                                    is_user === "ADMIN" ? <>
+                                        <Link className="headerbar" to="/api/admin">Admin Panel</Link>
+                                    </> : <>
+                                    </>
+                                }
+
+                                <Link className="headerbar" to="/api/userinfo">User: {localStorage.getItem('username')}</Link>
+                                <Link className="headerbar" to="/api/logout">Logout</Link>
+                            </> : <>
+                                <Link className="headerbar" to="/api/auth/signup">Signup</Link>
+                                <Link className="headerbar" to="/api/auth/signin">Login</Link>
+                            </>
+                        }
+
                     </Nav>
                 </Container>
             </Navbar>
-        </div>
+        </div >
     )
 }
 export default Header
