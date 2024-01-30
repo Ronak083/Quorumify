@@ -22,11 +22,12 @@
 > &emsp; Moderator:- api/MODERATOR - /UpdateQuestion <be>
 
 # Getting Started with Server 
-> Download the Zip file of [Quarumify-Server](https://github.com/Ronak083/Forum-API) & Run on Default port localhost:8080, So that it will run without any problem because React app is configured with localhost:8080 only.
+> Download the Zip file of [Quarumify-Server](https://github.com/Ronak083/Forum-API)
+> Clean and Install Maven before running the Application.
+> Run src/main/java/com/example/forumapi/ForumApiApplication.java as Application.
+> Run on Default port [localhost:8080](), So that it will run without any problem because React app is configured with localhost:8080 only.
 
-# Getting Started with Create React App
-
-
+# Getting Started with React App (User Interface)
 
 ### `npm start`
 > Runs the app in the development mode.\
