@@ -53,7 +53,7 @@ Content:
 > Moderator:- api/MODERATOR - /updateQuestionByMod, /deleteQuestionByMod
  ```
 
-# Getting Started with Server 
+## Getting Started with Server 
 ```c
 > Download the Zip file of Quarumify-Server"
 > Clean and Install Maven before running the Application.
@@ -62,8 +62,18 @@ Content:
 ```
 For any Query Contact me at ronakgupta083@gmail.com
 
-## ScreenShots
+## Getting Started with React App (User Interface)
 
+### `npm start`
+> Runs the app in the development mode.\
+> Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+You may also see any lint errors in the console.
+
+## Quorumify ScreenShots
+
+## API Testing ScreenShots
 <p>
 Here are some Screenshots from Postman During Api testing
 
@@ -91,12 +101,5 @@ Here are some Screenshots from Postman During Api testing
   <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20142401.png" alt="FoodRunner Splash Screen" width="90%"/>
 </p>
 
+## Conclusion 
 
-# Getting Started with React App (User Interface)
-
-### `npm start`
-> Runs the app in the development mode.\
-> Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-> See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-You may also see any lint errors in the console.
