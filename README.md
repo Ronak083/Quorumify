@@ -6,7 +6,7 @@
 
 Content:
 - Database Structure
-- Role-Basef Access Level
+- Role-Based Access Level
 - Getting Started with Server
 - Getting Started with React App
 - Screenshots of Quorumify
