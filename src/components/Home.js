@@ -1,6 +1,9 @@
 import { Button } from 'react-bootstrap';
 import '../App.css';
-import del from '../del.png'
+import del from '../del.jpg'
+import upload from'../upload.png'
+import pencil from '../pencil.png';
+import plus from '../plus.png';
 import apiService from '../services/apiServices';
 import React, { useState, useEffect } from 'react';
 import apiServicelogin from '../services/apiSerivcesLogin';
@@ -67,18 +70,6 @@ const Home = () => {
 
     };
 
-    const updateQ = async (questionID) => {
-        try {
-            const response = await apiService.put(`moderator/updateQue/${questionID}`, cont);
-            console.log(response);
-            setContent(' ');
-            getdata();
-        } catch (error) {
-            console.error("Error adding answer: ", error);
-        }
-
-    };
-
     const addQue = async () => {
 
         try {
@@ -95,7 +86,7 @@ const Home = () => {
 
     const deleteQbyuser = async (id) => {
         try {
-            const response = await apiService.delete(`user/deleteQuestionByUser/${id}`);
+            const response = await apiService.delete(`user/deleteQuestion/${id}`);
             console.log(response);
             getdata();
         } catch (error) {
@@ -105,7 +96,7 @@ const Home = () => {
 
     const deleteAbyuser = async (id) => {
         try {
-            const response = await apiService.delete(`user/deleteAnswerByUser/${id}`);
+            const response = await apiService.delete(`user/deleteAnswer/${id}`);
             console.log(response);
             getdata();
         } catch (error) {
@@ -115,7 +106,7 @@ const Home = () => {
 
     const deleteRbyuser = async (id) => {
         try {
-            const response = await apiService.delete(`user/deleteReplyByUser/${id}`);
+            const response = await apiService.delete(`user/deleteReply/${id}`);
             console.log(response);
             getdata();
         } catch (error) {
@@ -123,14 +114,26 @@ const Home = () => {
         }
     }
 
-    const deleteQuestion = async (id) => {
+    const deleteQuestionByMod = async (id) => {
         try {
-            const response = await apiService.delete(`admin/deleteQue/${id}`);
+            const response = await apiService.delete(`moderator/deleteQue/${id}`);
             console.log(response);
             getdata();
         } catch (error) {
             console.error("Error deleting question: ", error);
         }
+    };
+
+    const updateQuestionByMod = async (questionID) => {
+        try {
+            const response = await apiService.put(`moderator/updateQue/${questionID}`, cont);
+            console.log(response);
+            setContent(' ');
+            getdata();
+        } catch (error) {
+            console.error("Error adding answer: ", error);
+        }
+
     };
 
     return (
@@ -139,7 +142,7 @@ const Home = () => {
             {is_login ? (
                 <>
                     {is_user === "USER" ? (
-                        <>
+                        <div className="input-wrapper">
                             <input
                                 className="form-control new-question-input"
                                 onChange={(e) => setContent({ content: e.target.value })}
@@ -147,10 +150,10 @@ const Home = () => {
                                 placeholder="Add new Question"
                             />
 
-                            <button className='add-question-btn' onClick={() => addQue()} >Add</button>
+                            <button className='add-question-btn' onClick={() => addQue()} ><img className="uploadbtn" src={upload} alt="upload-btn" /></button>
                             <hr />
-                        </>
-                    ) : ""}
+                        </div>
+                    ) : "" }
 
                 </>
             ) : <h4 >Basic User view</h4>
@@ -158,16 +161,16 @@ const Home = () => {
             {data.map((question) => (
                 <div key={question.id} className="question-container">
                     <hr />
-                    <h4>{question.content} </h4>
-                    <h6> - Posted by {question.user.email} on {question.date}
+                    <h6>
+                    <span className="highlighted-text">{question.content}</span> <span  className="user-detail">- Posted by <b>{question.user.email}</b> on {question.date} </span>
                         {
                             is_username === question.user.email ?
                                 <button className="delete-btn" onClick={() => deleteQbyuser(question.id)}>
                                     <img className="delimg" src={del} alt="delete-btn" />
                                 </button>
                                 : ""
-                        }
-                    </h6>
+                        } </h6>
+                    
                     {question.answer.length > 0 ?
                         (
                             <ul>
@@ -175,19 +178,19 @@ const Home = () => {
                                 (
                                     <li key={answer.id} className="answer-item">
                                         <p>{answer.content}
-                                            <> - <i><u>Posted by <b>{answer.user.email}</b> on: {answer.date}</u></i>{
+                                            <span  className="user-detail"> - Posted by <b>{answer.user.email}</b> on {answer.date}</span>{
                                                 is_username === answer.user.email ?
                                                     <button className="delete-btn" onClick={() => deleteAbyuser(answer.id)}>
                                                         <img className="delimg" src={del} alt="delete-btn" />
                                                     </button>
                                                     : ""
-                                            } </>
+                                            } 
                                             {answer.replies.length > 0 ? (
                                                 <ul>
                                                     {
                                                         answer.replies.map((reply) =>
                                                         (
-                                                            <li key={reply.id} className="reply-item">{reply.content}, {reply.user.email} {
+                                                            <li key={reply.id} className="reply-item">{reply.content}, <span  className="user-detail"> {reply.user.email} </span> {
                                                                 is_username === reply.user.email ?
                                                                     <button className="delete-btn" onClick={() => deleteRbyuser(reply.id)}>
                                                                         <img className="delimg" src={del} alt="delete-btn" />
@@ -200,15 +203,15 @@ const Home = () => {
                                                 </ul>
                                             ) : ""}
                                             {is_user === "USER" ? (
-                                                <>
-                                                    <input
+                                                <div className="input-wrapper">
+                                                    <input 
                                                         className="reply-input form-control"
                                                         type="text"
                                                         placeholder="Add Comment to the Answer"
                                                         onChange={(e) => setContent({ content: e.target.value, })}
                                                     />
-                                                    <Button onClick={() => addRep(answer.id)}>Add Comment</Button>
-                                                </>
+                                                    <button className= "upload-btn" onClick={() => addRep(answer.id)}><img className="upload-btn-img" src={plus} alt="upload-btn" /></button>
+                                                </div>
                                             ) : ""}
                                         </p>
 
@@ -221,32 +224,29 @@ const Home = () => {
                     {is_login ? (
                         <>
                             {is_user === "USER" ? (
-                                <>
+                                <div className="input-wrapper">
                                     <input
                                         className="form-control answer-input"
                                         onChange={(e) => setContent({ content: e.target.value })}
                                         type="text"
                                         placeholder="your response"
                                     />
-                                    <Button onClick={() => addAns(question.id)}>Add Response</Button> <br /><hr />
-                                </>
+                                    <button className="upload-btn" onClick={() => addAns(question.id)}><img className="upload-btn-img" src={pencil} alt="upload-btn" /></button> <br /><hr />
+                                </div>
                             ) : ""}
                             {is_user === "MODERATOR" ? (
-                                <>
+                                <div className="input-wrapper">
                                     <input
                                         className="form-control update-question-input"
                                         onChange={(e) => setContent({ content: e.target.value })}
                                         type="text"
                                         placeholder="Update Question"
                                     />
-                                    <Button onClick={() => updateQ(question.id)}>Update</Button>
-                                </>
+                                    <button onClick={() => updateQuestionByMod(question.id)} className="upload-btn" ><img className="upload-btn-img" src={pencil} alt="upload-btn" /></button>
+                                    <button onClick={() => deleteQuestionByMod(question.id)} className="upload-btn" ><img className="upload-btn-img" src={del} alt="upload-btn" /></button>
+                                </div>
                             ) : ""}
-                            {is_user === "ADMIN" ? (
-                                <>
-                                    <Button onClick={() => deleteQuestion(question.id)} className='btn btn-dark delete-btn' >Delete</Button>
-                                </>
-                            ) : ""}
+                            
                         </>
                     ) : ""}
 

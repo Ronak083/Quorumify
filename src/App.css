@@ -56,9 +56,24 @@ input {
 
 /* styles.css */
 
+
 .headerbar{
-  text-decoration: none;
-  
+  text-decoration: solid;
+}
+
+.user-detail{
+  font-size: small;
+  font-style: italic;
+  color:#555;
+}
+
+.highlighted-text {
+  font-size: 1.3em; /* Increase the font size */
+}
+
+.input-wrapper {
+  display: flex; /* Use flexbox to make children inline */
+  align-items: center; /* Center vertically within the flex container */
 }
 
 .home-container {
@@ -68,18 +83,6 @@ input {
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
-}
-
-.new-question-input {
-  width: 80%;
-  margin-bottom: 10px;
-}
-
-.add-question-btn {
-  background-color: #343a40;
-  color: #fff;
-  padding: 8px 16px;
-  cursor: pointer;
 }
 
 .question-container {
@@ -123,12 +126,53 @@ input {
   cursor: pointer;
   background-color: inherit;
 }
+.upload-btn{
+  color: #fff;
+  border: none;
+  padding: 0;
+  margin-left: 5px;
+  cursor: pointer;
+  background-color: inherit;
+}
+
+.upload-btn-img{
+  border: none;
+  width: 30px;  
+  background-color: inherit;
+  padding: 4%;
+  margin: 0%;
+  margin-top: 5px;
+}
+
+.uploadbtn{
+  border: none;
+  width: 30px;  
+  background-color: inherit;
+  padding: 0%;
+  margin: 0%;
+  margin-bottom: 9px;
+}
+
+.new-question-input {
+  width: 80%;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  margin-right: 8px;
+}
+.add-question-btn {
+  background-color: #fff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
 
 .delimg{
   border: none;
   width: 20px;  
   border-radius: 9px;
 }
+
 .user-detail-container {
   border: 1px solid #ccc;
   padding: 10px;
