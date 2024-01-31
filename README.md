@@ -26,7 +26,7 @@
 
 </td>
 
-<td> <img src="Screenshots/DB%20table.png" alt="-" />
+<td> <img src="Forum-API/Screenshots/DB%20table.png" alt="-" />
 </td>
  </tr>
 </table>
@@ -59,27 +59,27 @@ For any Query Contact me at ronakgupta083@gmail.com
 Here are some Screenshots from Postman During Api testing
 
  > GET: api/auth/ - Get all the Questions from Database
-  <img src="Screenshots/Screenshot%202024-01-19%20133844.png" alt="-" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20133844.png" alt="-" width="90%"/>
 
 > POST: api/auth/signin/ (email, password) - Provide JWT Token for Secure transaction 
-  <img src="Screenshots/Screenshot%202024-01-19%20135029.png" alt="-" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20135029.png" alt="-" width="90%"/>
 
 > GET: api/auth/loggedInUserinfo - Gives Current User Info from Request Header
-  <img src="Screenshots/Screenshot%202024-01-19%20135610.png" alt="-" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20135610.png" alt="-" width="90%"/>
 
 > POST: api/user/postQuestion (content) - Upload Question in database and Create a Blank List of Answers, & taking 
 > User, Date, I'd by its own
-  <img src="Screenshots/Screenshot%202024-01-19%20135858.png" alt="FoodRunner Splash Screen" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20135858.png" alt="FoodRunner Splash Screen" width="90%"/>
 
 > POST: api/user/postAnswer/{Q_ID} (content) - Upload Answer in database and Create a Blank List of Reply, set 
 > Question_ID = Q_ID & taking User, Date, I'd by its own
-  <img src="Screenshots/Screenshot%202024-01-19%20140857.png" alt="FoodRunner Splash Screen" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20140857.png" alt="FoodRunner Splash Screen" width="90%"/>
   
 > PUT: api/user/updateBio (bio)  Update User Bio
-  <img src="Screenshots/Screenshot%202024-01-19%20141946.png" alt="FoodRunner Splash Screen" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20141946.png" alt="FoodRunner Splash Screen" width="90%"/>
 
 > DELETE: api/user/delete/QuestionByUser - Each user has Access to Delete Question Posted by him.
-  <img src="Screenshots/Screenshot%202024-01-19%20142401.png" alt="FoodRunner Splash Screen" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20142401.png" alt="FoodRunner Splash Screen" width="90%"/>
 </p>
 
 
