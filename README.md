@@ -4,6 +4,15 @@
 •Designed a seamless interface with distinct views for users at 4 different authentication levels, offering a personalized experience based on roles, including a dedicated view for non-logged-in users. <br>
 •Allowed users with comprehensive CRUD functionalities on 3 different Objects i.e. questions, answers, & comments. Implemented user-specific permissions, allowing users to modify & delete their contributions. <br>
 
+Content:
+- Database Structure
+- Role-Basef Access Level
+- Getting Started with Server
+- Getting Started with React App
+- Screenshots of Quorumify
+- API Testing ScreenShots
+- Conclusion 
+
 ## Database Structure
 <table>
 
