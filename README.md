@@ -1,8 +1,7 @@
 # Quorumify:  Java, React JS, Spring Boot, Security, JPA, MySQL
-
-•Developed a Forum Portal project akin to Quora, with 4 role-based access levels (Admin, Moderator, Basic User & unauthenticated User), ensuring a controlled and secure user experience. <br>
-•Designed a seamless interface with distinct views for users at 4 different authentication levels, offering a personalized experience based on roles, including a dedicated view for non-logged-in users. <br>
-•Allowed users with comprehensive CRUD functionalities on 3 different Objects i.e. questions, answers, & comments. Implemented user-specific permissions, allowing users to modify & delete their contributions. <br>
+• Developed a 'Forum Portal' project akin to Quora, prioritizing security, featuring authentication, and role-based access levels (Admin, Moderator, Basic User), ensuring a controlled and secure user experience.<br>
+• Designed a seamless interface with distinct views for users at different authentication levels, offering a personalized experience based on roles, including a dedicated view for non-logged-in users.<br>
+• Empowered users with comprehensive CRUD functionalities for questions, answers, and comments. Implemented user-specific permissions, allowing users to modify and delete their contributions.<br>
 
 Content:
 - Database Structure
