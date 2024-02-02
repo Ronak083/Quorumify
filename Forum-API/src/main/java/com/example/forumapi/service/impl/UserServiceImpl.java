@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService {
                 () -> new ResourceNotExisted("user",
                         "Id", userID));
         u.setBio(user.getBio());
+        userRepository.save(U);
         return u;
     }
 
