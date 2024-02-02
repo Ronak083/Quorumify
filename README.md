@@ -86,7 +86,7 @@ Here are some Screenshots from Quorumify User-Interface Testing
 > delete button in last 2nd line because current user is testing@gmai.com
 <img src="src/Screenshots/Screenshot%202024-02-03%20014643.png" width ="90%">
 
-> Admin Panel: If User is Admin it will Redirect to admin Panel just after login.
+> Admin Panel: If User is Admin it will Redirect to admin Panel just after login. Camn modify User Role in just one Click.
 <img src="src/Screenshots/Screenshot%202024-02-03%20010250.png" width ="90%">
 
 > Moderator View: If User is Moderator it will Redirect to Home page with Update/ Delete functionality.
