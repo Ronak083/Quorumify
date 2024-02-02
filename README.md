@@ -76,17 +76,30 @@ You may also see any lint errors in the console.
 <p>
 Here are some Screenshots from Quorumify User-Interface Testing
 
-> Hey
-  <img src="src/Screenshots/Screenshot%202024-02-03%20005254.png" width ="90%">
-  <img src="src/Screenshots/Screenshot%202024-02-03%20005307.png" width ="90%">
-  <img src="src/Screenshots/Screenshot%202024-02-03%20005406png" width ="90%">
+> Signup Page: Take inputs from user, Store in DB and Redirect to Login page.
+<img src="src/Screenshots/Screenshot%202024-02-03%20005406.png" width ="90%">
+
+> Log in page: Response content JWT token which Stores in Local Storage & Redirect to Role Based page
   <img src="src/Screenshots/Screenshot%202024-02-03%20005441.png" width ="90%">
-  <img src="src/Screenshots/Screenshot%202024-02-03%20005706.png" width ="90%">
+
+> Home Page for normal user. User can add new Question/ Answer/ Reply and Delete his contribution, Just see small
+> delete button in last 2nd line because current user is testing@gmai.com
+<img src="src/Screenshots/Screenshot%202024-02-03%20005706.png" width ="90%">
+
+> Admin Panel: If User is Admin it will Redirect to admin Panel just after login.
+<img src="src/Screenshots/Screenshot%202024-02-03%20010250.png" width ="90%">
+
+> Moderator View: If User is Moderator it will Redirect to Home page with Update/ Delete functionality.
+<img src="src/Screenshots/Screenshot%202024-02-03%20010338.png" width ="90%">
+
+> Basic User View: For Unauthenticated User. For Basic User Header Shows Signup/Login Button 
+  <img src="src/Screenshots/Screenshot%202024-02-03%20005307.png" width ="90%">
+
+> User Panel: Can see Login user info and Change Bio
   <img src="src/Screenshots/Screenshot%202024-02-03%20010200.png" width ="90%">
-  <img src="src/Screenshots/Screenshot%202024-02-03%20010250.png" width ="90%">
-  <img src="src/Screenshots/Screenshot%202024-02-03%20010338.png" width ="90%">
-  
-                
+
+> Logout Page: Clear Local Storage & Reload webpage.
+<img src="src/Screenshots/Screenshot%202024-02-03%20005254.png" width ="90%">
 
 </p>
 
