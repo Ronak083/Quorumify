@@ -1,5 +1,9 @@
-import { Button } from 'react-bootstrap';
+import '../App.css';
+
 import { useNavigate } from 'react-router-dom';
+import arrow from "../assest/arrow.png"
+
+import bye from '../assest/tuSiJaaRaheHo.png';
 
 const styles = {
     section: {
@@ -24,11 +28,11 @@ const Logout = () => {
 
     return (
         <div style={styles.section}>
-            <h2 className="">Logout</h2>
+            <h4 ><img className="authimg" src= {arrow} alt="upload-btn" />Logout Page</h4>
             
             {
                 is_login ? <>
-                    <h4> <p>Are you sure, you want to really logout</p> <Button onClick={logout}>Yes</Button> </h4>
+                     <span>Are you sure, </span> <button className='byebtn' onClick={logout}><img className="byeImg" src={bye} alt="upload-btn" /></button>
 
                 </>
                     :

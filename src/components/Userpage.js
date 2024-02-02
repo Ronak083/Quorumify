@@ -1,5 +1,6 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react';
+import update from '../assest/update.png'
 import apiService from '../services/apiServices';
 const Userpage = () => {
 
@@ -41,11 +42,17 @@ const Userpage = () => {
 
     return (
         <div className="user-detail-container">
-            <h2>Name: <u>{data.firstName} {data.lastName}</u></h2>
-            <h3>Email: {data.email} | Role: {data.role}</h3>
-            <h4>Bio: {data.bio || 'No bio available'}
-            </h4>
-            <input placeholder='New Bio' type="text" onChange={(e) => setBio({ bio : e.target.value})}/><button onClick={() => updateBio()}>Update Bio</button>
+            <div className="highlighted-text">
+
+            
+            <span>Name: <u className="highlighted-text">{data.firstName} {data.lastName}</u></span> <br></br>
+            <span>Email: {data.email} | Role: {data.role}</span>
+            <div className="input-wrapper">            
+            <span>Bio: {data.bio || 'No bio available'}
+            </span>
+            <input className="reply-input form-control" placeholder='New Bio' type="text" onChange={(e) => setBio({ bio : e.target.value})}/><button className="upload-btn-img" onClick={() => updateBio()}><img className="upload-btn-img" src={update} alt="upload"/></button>
+            </div>
+            </div>
         </div>
     );
 };

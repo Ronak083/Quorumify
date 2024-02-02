@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
+import key from '../assest/key.png';
+import loginlogo from '../assest/password.png';
 import apiService from '../services/apiServices';
 import apiServicelogin from '../services/apiSerivcesLogin';
 const styles = {
@@ -69,15 +71,15 @@ const Login = () => {
 
     return (
         <div style={styles.section}>
-            <h2>Log in</h2>
+            <h2><img className="authimg" src= {loginlogo} alt="upload-btn" /> Log in</h2>
             {
                 is_login ? <> You are Already Logged-in, Logout First</>
                     :
                     <div className="form">
 
                         <input className="form-control" onChange={(e) => setDetails({ ...detail, email: e.target.value })} type="text" placeholder="username" />
-                        <input className="form-control" onChange={(e) => setDetails({ ...detail, password: e.target.value })} type="password" placeholder="password" />
-                        <button className="btn btn-primary" onClick={handleLogin}>Login</button>
+                        <input className="form-control" onChange={(e) => setDetails({ ...detail, password: e.target.value })} type="password" placeholder="password" /> <br></br>
+                        <button className="authbtn" onClick={handleLogin}><img className="authimg" src={key} alt="upload-btn" /></button>
 
                     </div>
             }

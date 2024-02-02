@@ -8,9 +8,8 @@ import Table from 'react-bootstrap/Table';
 
 const styles = {
     section: {
-        fontSize: "18px",
+        fontSize: "100%",
         color: "#292b2c",
-        backgroundColor: "#fff",
         padding: "20px"
     },
 }
@@ -49,7 +48,9 @@ const Admin = () => {
     const updateUserToModerator = async (id) => {
         try {
             const response = await apiService.put(`admin/updateRoleToMOD/${id}`);
+            console.log(response.data);
             getdata();
+            
         } catch (error) {
             console.error("Error while Updating Role: ", error);
         }
@@ -58,6 +59,7 @@ const Admin = () => {
     const updateUserToUser = async (id) => {
         try {
             const response = await apiService.put(`admin/updateRoleToUser/${id}`);
+            console.log(response.data);
             getdata();
         } catch (error) {
             console.error("Error while Updating Role: ", error);
@@ -84,7 +86,7 @@ const Admin = () => {
                                 {
                                     data && Array.isArray(data) ** data.length > 0 ?
                                     data.map((item) => (
-                                            <tr>
+                                            <tr key={item.id}>
                                                 <td>{item.firstName}</td>
                                                 <td>{item.lastName}</td>
                                                 <td>{item.email}</td>

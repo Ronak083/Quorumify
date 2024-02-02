@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import '../App.css';
 import apiServicelogin from '../services/apiSerivcesLogin';
+import signuplogo from '../assest/sign-up.png';
+import signup from '../assest/signup.png';
 const styles = {
     section: {
         fontSize: "18px",
@@ -33,7 +35,7 @@ const Signup = () => {
 
     return (
         <div style={styles.section}>
-            <h2 className="">Signup</h2>
+            <h2 className=""><img className="authimg" src= {signuplogo} alt="upload-btn" /> Sign-up</h2>
             {
                 is_login ? <> You are Already Logged-in, Logout First</>
                     :
@@ -42,8 +44,8 @@ const Signup = () => {
                             <input className="form-control" onChange={(e) => setDetails({ ...detail, firstname: e.target.value })} type="text" placeholder="firstname" required />
                             <input className="form-control" onChange={(e) => setDetails({ ...detail, lastname: e.target.value })} type="text" placeholder="lastname" required />
                             <input className="form-control" onChange={(e) => setDetails({ ...detail, email: e.target.value })} type="email" placeholder="email" required />
-                            <input className="form-control" onChange={(e) => setDetails({ ...detail, password: e.target.value })} type="password" placeholder="password" required />
-                            <button className="btn btn-primary" onClick={submit}>Login</button>
+                            <input className="form-control" onChange={(e) => setDetails({ ...detail, password: e.target.value })} type="password" placeholder="password" required /><br></br>
+                            <button className="authbtn" onClick={submit}><img className="authimg" src= {signup} alt="upload-btn" /></button>
                         </div>
                     </>
             }
