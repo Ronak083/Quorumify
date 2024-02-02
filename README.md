@@ -74,16 +74,25 @@ You may also see any lint errors in the console.
 
 ## Quorumify ScreenShots
 <p>
-Here are some Screenshots during Quorumify User-Interface Testing
+Here are some Screenshots from Quorumify User-Interface Testing
 
 > Hey
-    <img src="src/Screenshots/Screenshot%202024-02-03%20005254.png" width ="90%">
+  <img src="src/Screenshots/Screenshot%202024-02-03%20005254.png" width ="90%">
+  <img src="src/Screenshots/Screenshot%202024-02-03%20005307.png" width ="90%">
+  <img src="src/Screenshots/Screenshot%202024-02-03%20005406png" width ="90%">
+  <img src="src/Screenshots/Screenshot%202024-02-03%20005441.png" width ="90%">
+  <img src="src/Screenshots/Screenshot%202024-02-03%20005706.png" width ="90%">
+  <img src="src/Screenshots/Screenshot%202024-02-03%20010200.png" width ="90%">
+  <img src="src/Screenshots/Screenshot%202024-02-03%20010250.png" width ="90%">
+  <img src="src/Screenshots/Screenshot%202024-02-03%20010338.png" width ="90%">
+  
+                
 
 </p>
 
 ## API Testing ScreenShots
 <p>
-Here are some Screenshots from Postman During Api testing
+Here are some Screenshots from Postman During API testing
 
  > GET: api/auth/ - Get all the Questions from Database
   <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20133844.png" alt="-" width="90%"/>
@@ -96,17 +105,17 @@ Here are some Screenshots from Postman During Api testing
 
 > POST: api/user/postQuestion (content) - Upload Question in database and Create a Blank List of Answers, & taking 
 > User, Date, I'd by its own
-  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20135858.png" alt="FoodRunner Splash Screen" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20135858.png" alt="-" width="90%"/>
 
 > POST: api/user/postAnswer/{Q_ID} (content) - Upload Answer in database and Create a Blank List of Reply, set 
 > Question_ID = Q_ID & taking User, Date, I'd by its own
-  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20140857.png" alt="FoodRunner Splash Screen" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20140857.png" alt="-" width="90%"/>
   
 > PUT: api/user/updateBio (bio)  Update User Bio
-  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20141946.png" alt="FoodRunner Splash Screen" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20141946.png" alt="-" width="90%"/>
 
 > DELETE: api/user/delete/QuestionByUser - Each user has Access to Delete Question Posted by him.
-  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20142401.png" alt="FoodRunner Splash Screen" width="90%"/>
+  <img src="Forum-API/Screenshots/Screenshot%202024-01-19%20142401.png" alt="-" width="90%"/>
 </p>
 
 ## Conclusion 
