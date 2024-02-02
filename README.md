@@ -76,9 +76,8 @@ You may also see any lint errors in the console.
 <p>
 Here are some Screenshots during Quorumify User-Interface Testing
 
->     Hey
-    
-<img src="![Screenshot 2024-02-03 005254.png](src%2FScreenshots%2FScreenshot%202024-02-03%20005254.png)">
+> Hey
+    <img src="src/Screenshots/Screenshot%202024-02-03%20005254.png" width ="90%">
 
 </p>
 
