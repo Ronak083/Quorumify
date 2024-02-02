@@ -84,7 +84,7 @@ Here are some Screenshots from Quorumify User-Interface Testing
 
 > Home Page for normal user. User can add new Question/ Answer/ Reply and Delete his contribution, Just see small
 > delete button in last 2nd line because current user is testing@gmai.com
-<img src="src/Screenshots/Screenshot%202024-02-03%20005706.png" width ="90%">
+<img src="src/Screenshots/Screenshot%202024-02-03%20014643.png" width ="90%">
 
 > Admin Panel: If User is Admin it will Redirect to admin Panel just after login.
 <img src="src/Screenshots/Screenshot%202024-02-03%20010250.png" width ="90%">
@@ -93,7 +93,7 @@ Here are some Screenshots from Quorumify User-Interface Testing
 <img src="src/Screenshots/Screenshot%202024-02-03%20010338.png" width ="90%">
 
 > Basic User View: For Unauthenticated User. For Basic User Header Shows Signup/Login Button 
-  <img src="src/Screenshots/Screenshot%202024-02-03%20005307.png" width ="90%">
+  <img src="src/Screenshots/Screenshot%202024-02-03%20015304.png" width ="90%">
 
 > User Panel: Can see Login user info and Change Bio
   <img src="src/Screenshots/Screenshot%202024-02-03%20010200.png" width ="90%">
