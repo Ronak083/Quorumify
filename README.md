@@ -75,6 +75,8 @@ You may also see any lint errors in the console.
 ## Quorumify ScreenShots
 <p>
 Here are some Screenshots from Quorumify User-Interface Testing
+> Basic User View(Home Page): For Unauthenticated User. For Basic User, Header Shows Signup/Login Button.
+  <img src="src/Screenshots/Screenshot%202024-02-03%20015304.png" width ="90%">
 
 > Signup Page: Take inputs from user, Store in DB and Redirect to Login page.
 <img src="src/Screenshots/Screenshot%202024-02-03%20005406.png" width ="90%">
@@ -91,9 +93,6 @@ Here are some Screenshots from Quorumify User-Interface Testing
 
 > Moderator View: If User is Moderator it will Redirect to Home page with Update/ Delete functionality.
 <img src="src/Screenshots/Screenshot%202024-02-03%20010338.png" width ="90%">
-
-> Basic User View: For Unauthenticated User. For Basic User Header Shows Signup/Login Button 
-  <img src="src/Screenshots/Screenshot%202024-02-03%20015304.png" width ="90%">
 
 > User Panel: Can see Login user info and Change Bio
   <img src="src/Screenshots/Screenshot%202024-02-03%20010200.png" width ="90%">
