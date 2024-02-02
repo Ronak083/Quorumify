@@ -101,4 +101,7 @@ Here are some Screenshots from Postman During Api testing
 </p>
 
 ## Conclusion 
+This project was created to showcase my Full-stack technical skills, here I have mainly focused on Secure Backend (Authentication and Authorization). Each Session is controlled by JWT Token which has an Expiry of 15 min. I have introduced Role-based access control (RBAC) by providing different Access levels to each User. In this project, I gained hands-on experience in different technologies, especially in React JS which was initially challenging for me to create a User-friendly Interface. 
+
+I would like to thank all the friends who helped me to build this Web-Application. I refer to documentation from Spring.io and react.dev with some YouTube tutorials to build this project. Hope You Like my work, For a more detailed discussion or to share your valuable insights, feel free to reach out to me at ronakgupta083@gmail.com. 
 
