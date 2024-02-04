@@ -38,7 +38,7 @@ const Login = () => {
             if(role === "ADMIN"){
                 navigate("/api/admin")
             } else{
-                navigate("/api")
+                navigate("/")
             }
             window.location.reload();
         } catch (error) {

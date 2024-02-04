@@ -36,10 +36,6 @@ const Userpage = () => {
 
     };
 
-
-
-
-
     return (
         <div className="user-detail-container">
             <div className="highlighted-text">

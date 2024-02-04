@@ -16,13 +16,12 @@ function App() {
       <BrowserRouter>
       <Header />
       <Routes>
+      <Route path='/' element={<Home />} />
         <Route path='/api/auth/signin' element={<Login />} />
         <Route path='/api/auth/signup' element={<Signup />} />
         <Route path='/api/userinfo' element={<Userpage />} />
         <Route path='/api/admin' element={<Admin />} />
-        <Route path='/api' element={<Home />} />
         <Route path='/api/logout' element={<Logout />} />
-
       </Routes>
       </BrowserRouter>
   );

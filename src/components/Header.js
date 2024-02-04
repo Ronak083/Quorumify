@@ -2,7 +2,6 @@ import '../App.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import profile from "../assest/man.png";
-import qa from "../assest/qa.png";
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +13,7 @@ function Header() {
         <div>
             <Navbar className="headerbar" bg="dark" data-bs-theme="dark" >
                 <Container>
-                    <Navbar.Brand style={{ margin: "0", color: 'red' , fontFamily: 'cursive'}} className="quorumify" href="/api"> Quorumify</Navbar.Brand>
+                    <Navbar.Brand style={{ margin: "0", color: 'red' , fontFamily: 'cursive'}} className="quorumify" href="/"> Quorumify</Navbar.Brand>
                     <Nav className="me-auto navbar_wrapper headerbar">
                         {
                             is_login ? 

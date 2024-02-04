@@ -21,7 +21,7 @@ const Logout = () => {
     const logout = () => {
         console.log("Logging out:" + localStorage.getItem('username') )
         localStorage.clear();  
-        navigate("/api");                   
+        navigate("/");                   
         window.location.reload();
     }
 
