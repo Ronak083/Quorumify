@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+
+  # ── Spring Boot API ───────────────────────────────────────────────────────
+  # DB config lives in Quarumify-Spring/docker-compose.yml — not here.
+  quorumify-api:
+    image: ${DOCKER_USERNAME}/quorumify:latest   # built by Quarumify-Spring CI/CD
+    container_name: quorumify-api
+    ports:
+      - "8080:8080"
+    networks:
+      - quorumify-net
+    restart: unless-stopped
+
+  # ── React Frontend (Nginx) ────────────────────────────────────────────────
+  quorumify-react:
+    image: ${DOCKER_USERNAME}/quorumify-react:latest   # built by this repo's CI/CD
+    container_name: quorumify-react
+    ports:
+      - "80:80"
+    depends_on:
+      - quorumify-api
+    networks:
+      - quorumify-net
+    restart: unless-stopped
+
+networks:
+  quorumify-net:
+    driver: bridge

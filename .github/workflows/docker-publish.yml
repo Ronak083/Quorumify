@@ -1,0 +1,43 @@
+name: Docker Build & Push — Quorumify React
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test -- --watchAll=false --passWithNoTests
+
+      - name: Log in to DockerHub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build Docker Image
+        run: |
+          docker build \
+            --build-arg REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }} \
+            -t ${{ secrets.DOCKER_USERNAME }}/quorumify-react:latest \
+            -t ${{ secrets.DOCKER_USERNAME }}/quorumify-react:${{ github.sha }} \
+            .
+
+      - name: Push to DockerHub
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/quorumify-react:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/quorumify-react:${{ github.sha }}
