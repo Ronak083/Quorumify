@@ -1,7 +1,7 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react';
-import update from '../assest/update.png'
 import apiService from '../services/apiServices';
+
 const Userpage = () => {
 
     const [data, setData] = useState([]);
@@ -36,18 +36,41 @@ const Userpage = () => {
 
     };
 
-    return (
-        <div className="user-detail-container">
-            <div className="highlighted-text">
+    const getInitial = () => {
+        if (data.firstName) return data.firstName.charAt(0).toUpperCase();
+        return '?';
+    };
 
-            
-            <span>Name: <u className="highlighted-text">{data.firstName} {data.lastName}</u></span> <br></br>
-            <span>Email: {data.email} | Role: {data.role}</span>
-            <div className="input-wrapper">            
-            <span>Bio: {data.bio || 'No bio available'}
-            </span>
-            <input className="reply-input form-control" placeholder='New Bio' type="text" onChange={(e) => setBio({ bio : e.target.value})}/><button className="upload-btn-img" onClick={() => updateBio()}><img className="upload-btn-img" src={update} alt="upload"/></button>
-            </div>
+    return (
+        <div className="profile-wrapper">
+            <div className="profile-card">
+                <div className="profile-avatar">{getInitial()}</div>
+                <div className="profile-name">{data.firstName} {data.lastName}</div>
+                <div className="profile-info">
+                    <i className="bi bi-envelope" style={{ marginRight: '0.35rem' }}></i>
+                    {data.email}
+                </div>
+                <div className="profile-info">
+                    <i className="bi bi-shield" style={{ marginRight: '0.35rem' }}></i>
+                    <span className={`role-badge role-badge-${data.role ? data.role.toLowerCase() : 'user'}`}>
+                        {data.role}
+                    </span>
+                </div>
+
+                <div className="profile-section">
+                    <h6>Bio</h6>
+                    <p className="profile-bio">{data.bio || 'No bio available'}</p>
+                    <div className="input-group-custom">
+                        <input
+                            placeholder="Write a new bio..."
+                            type="text"
+                            onChange={(e) => setBio({ bio: e.target.value })}
+                        />
+                        <button className="btn-primary-custom" onClick={() => updateBio()}>
+                            <i className="bi bi-pencil"></i> Update
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );

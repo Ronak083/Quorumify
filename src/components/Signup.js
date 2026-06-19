@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import apiServicelogin from '../services/apiSerivcesLogin';
-import signuplogo from '../assest/sign-up.png';
-import signup from '../assest/signup.png';
-const styles = {
-    section: {
-        fontSize: "18px",
-        color: "#292b2c",
-        backgroundColor: "#fff",
-        padding: "20px"
-    },
-}
 
 const Signup = () => {
     const [detail, setDetails] = useState({
@@ -34,22 +24,57 @@ const Signup = () => {
     let navigate = useNavigate();
 
     return (
-        <div style={styles.section}>
-            <h2 className=""><img className="authimg" src= {signuplogo} alt="upload-btn" /> Sign-up</h2>
-            {
-                is_login ? <> You are Already Logged-in, Logout First</>
-                    :
+        <div className="auth-wrapper">
+            <div className="auth-card">
+                <h2><i className="bi bi-person-plus"></i> Sign Up</h2>
+                {is_login ? (
+                    <div className="auth-alert">
+                        You are already logged in. Logout first to create a new account.
+                    </div>
+                ) : (
                     <>
-                        <div className="form">
-                            <input className="form-control" onChange={(e) => setDetails({ ...detail, firstname: e.target.value })} type="text" placeholder="firstname" required />
-                            <input className="form-control" onChange={(e) => setDetails({ ...detail, lastname: e.target.value })} type="text" placeholder="lastname" required />
-                            <input className="form-control" onChange={(e) => setDetails({ ...detail, email: e.target.value })} type="email" placeholder="email" required />
-                            <input className="form-control" onChange={(e) => setDetails({ ...detail, password: e.target.value })} type="password" placeholder="password" required /><br></br>
-                            <button className="authbtn" onClick={submit}><img className="authimg" src= {signup} alt="upload-btn" /></button>
+                        <div className="form-group">
+                            <label>First Name</label>
+                            <input
+                                onChange={(e) => setDetails({ ...detail, firstname: e.target.value })}
+                                type="text"
+                                placeholder="John"
+                                required
+                            />
                         </div>
+                        <div className="form-group">
+                            <label>Last Name</label>
+                            <input
+                                onChange={(e) => setDetails({ ...detail, lastname: e.target.value })}
+                                type="text"
+                                placeholder="Doe"
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Email</label>
+                            <input
+                                onChange={(e) => setDetails({ ...detail, email: e.target.value })}
+                                type="email"
+                                placeholder="you@example.com"
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input
+                                onChange={(e) => setDetails({ ...detail, password: e.target.value })}
+                                type="password"
+                                placeholder="Create a password"
+                                required
+                            />
+                        </div>
+                        <button className="btn-primary-custom" onClick={submit}>
+                            <i className="bi bi-check-circle"></i> Create Account
+                        </button>
                     </>
-            }
-
+                )}
+            </div>
         </div>
     )
 }

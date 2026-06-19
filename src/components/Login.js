@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
-import key from '../assest/key.png';
-import loginlogo from '../assest/password.png';
 import apiService from '../services/apiServices';
 import apiServicelogin from '../services/apiSerivcesLogin';
-const styles = {
-    section: {
-        fontSize: "18px",
-        color: "#292b2c",
-        backgroundColor: "#fff",
-        padding: "20px"
-    },
-}
-
 
 const Login = () => {
     const is_login = localStorage.getItem('token');
@@ -34,7 +23,7 @@ const Login = () => {
             localStorage.setItem('username', username);
             localStorage.setItem('role', role);
             console.log(response.data);
-            
+
             if(role === "ADMIN"){
                 navigate("/api/admin")
             } else{
@@ -70,21 +59,37 @@ const Login = () => {
 
 
     return (
-        <div style={styles.section}>
-            <h2><img className="authimg" src= {loginlogo} alt="upload-btn" /> Log in</h2>
-            {
-                is_login ? <> You are Already Logged-in, Logout First</>
-                    :
-                    <div className="form">
-
-                        <input className="form-control" onChange={(e) => setDetails({ ...detail, email: e.target.value })} type="text" placeholder="username" />
-                        <input className="form-control" onChange={(e) => setDetails({ ...detail, password: e.target.value })} type="password" placeholder="password" /> <br></br>
-                        <button className="authbtn" onClick={handleLogin}><img className="authimg" src={key} alt="upload-btn" /></button>
-
+        <div className="auth-wrapper">
+            <div className="auth-card">
+                <h2><i className="bi bi-box-arrow-in-right"></i> Log In</h2>
+                {is_login ? (
+                    <div className="auth-alert">
+                        You are already logged in. Logout first to switch accounts.
                     </div>
-            }
-
-
+                ) : (
+                    <>
+                        <div className="form-group">
+                            <label>Email</label>
+                            <input
+                                onChange={(e) => setDetails({ ...detail, email: e.target.value })}
+                                type="text"
+                                placeholder="you@example.com"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input
+                                onChange={(e) => setDetails({ ...detail, password: e.target.value })}
+                                type="password"
+                                placeholder="Enter your password"
+                            />
+                        </div>
+                        <button className="btn-primary-custom" onClick={handleLogin}>
+                            <i className="bi bi-arrow-right-circle"></i> Sign In
+                        </button>
+                    </>
+                )}
+            </div>
         </div>
     );
 }; export default Login;

@@ -1,18 +1,7 @@
-import { Button } from 'react-bootstrap';
-
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import apiService from '../services/apiServices';
 import React, { useState, useEffect } from 'react';
-import Table from 'react-bootstrap/Table';
-
-const styles = {
-    section: {
-        fontSize: "100%",
-        color: "#292b2c",
-        padding: "20px"
-    },
-}
 
 const Admin = () => {
 
@@ -43,14 +32,12 @@ const Admin = () => {
         }
     }
 
-
-
     const updateUserToModerator = async (id) => {
         try {
             const response = await apiService.put(`admin/updateRoleToMOD/${id}`);
             console.log(response.data);
             getdata();
-            
+
         } catch (error) {
             console.error("Error while Updating Role: ", error);
         }
@@ -67,52 +54,68 @@ const Admin = () => {
     }
 
     return (
-        <div style={styles.section}>
-
-            {
-                is_user === "ADMIN" ?
-                    <>
-                        <Table striped bordered hover variant="dark">
-                            <thead>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Modify</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    data && Array.isArray(data) ** data.length > 0 ?
-                                    data.map((item) => (
+        <div className="page-container-wide">
+            {is_user === "ADMIN" ? (
+                <>
+                    <h4 className="section-title">
+                        <i className="bi bi-shield-lock" style={{ color: 'var(--primary)', marginRight: '0.5rem' }}></i>
+                        Admin Panel
+                    </h4>
+                    <div className="card-base">
+                        <div className="admin-table-wrapper">
+                            <table className="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {data && Array.isArray(data) && data.length > 0 ?
+                                        data.map((item) => (
                                             <tr key={item.id}>
                                                 <td>{item.firstName}</td>
                                                 <td>{item.lastName}</td>
                                                 <td>{item.email}</td>
-                                                <td>{item.role}</td>
                                                 <td>
-                                                    {
-                                                        item.role === "USER" ? <> <Button className="btn-light" onClick={() => updateUserToModerator(item.id)}> </Button> </> : ""
-                                                    }
-                                                    {
-                                                        item.role === "MODERATOR" ? <> <Button onClick={() => updateUserToUser(item.id)}> </Button> </> : ""
-                                                    }
+                                                    <span className={`role-badge role-badge-${item.role ? item.role.toLowerCase() : 'user'}`}>
+                                                        {item.role}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    {item.role === "USER" && (
+                                                        <button className="btn-success-sm" onClick={() => updateUserToModerator(item.id)}>
+                                                            <i className="bi bi-arrow-up-circle"></i> Promote to Mod
+                                                        </button>
+                                                    )}
+                                                    {item.role === "MODERATOR" && (
+                                                        <button className="btn-warning-sm" onClick={() => updateUserToUser(item.id)}>
+                                                            <i className="bi bi-arrow-down-circle"></i> Demote to User
+                                                        </button>
+                                                    )}
                                                 </td>
                                             </tr>
-                                    ))
-                                        : ""
-                                }
-
-                            </tbody>
-                        </Table>
-                    </> :
-                    <>
-                       { navigate("/api/auth/signin")}
-                    </>
-                    
-            }
-        </div >
+                                        ))
+                                        : (
+                                            <tr>
+                                                <td colSpan="5" style={{ textAlign: 'center', color: 'var(--gray-400)' }}>
+                                                    No users found
+                                                </td>
+                                            </tr>
+                                        )
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <>{navigate("/api/auth/signin")}</>
+            )}
+        </div>
     );
 };
 export default Admin

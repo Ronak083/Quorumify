@@ -1,7 +1,6 @@
 import '../App.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import profile from "../assest/man.png";
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
@@ -10,33 +9,45 @@ function Header() {
     const is_login = localStorage.getItem('token');
     const is_user = localStorage.getItem('role');
     return (
-        <div>
-            <Navbar className="headerbar" bg="dark" data-bs-theme="dark" >
-                <Container>
-                    <Navbar.Brand style={{ margin: "0", color: 'red' , fontFamily: 'cursive'}} className="quorumify" href="/"> Quorumify</Navbar.Brand>
-                    <Nav className="me-auto navbar_wrapper headerbar">
-                        {
-                            is_login ? 
-                            <div style={{margin: "auth"}}>
-                                {
-                                    is_user === "ADMIN" ? <>
-                                        <Link className="headerbar" to="/api/admin">Admin Panel</Link>
-                                    </> : <>
-                                    </>
-                                }
-
-                                <Link className="headerbar" to="/api/userinfo"><img style= {{width: "7%"}} className="authimg" src= {profile} alt="upload-btn" />  {localStorage.getItem('username')}</Link>
-                                <Link className="headerbar" to="/api/logout">Logout</Link>
-                            </div> : <div style={{margin: "auth"}}>
-                                <Link className="headerbar" to="/api/auth/signup">Signup</Link>
-                                <Link className="headerbar" to="/api/auth/signin">Login</Link>
-                            </div>
-                        }
-
+        <Navbar className="navbar-custom" expand="sm">
+            <Container>
+                <Navbar.Brand href="/">
+                    <span>Q</span>uorumify
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="nav" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
+                    <i className="bi bi-list" style={{ color: '#fff', fontSize: '1.25rem' }}></i>
+                </Navbar.Toggle>
+                <Navbar.Collapse id="nav">
+                    <Nav className="ms-auto">
+                        <div className="nav-links">
+                            {is_login ? (
+                                <>
+                                    {is_user === "ADMIN" && (
+                                        <Link to="/api/admin">
+                                            <i className="bi bi-shield-lock"></i> Admin
+                                        </Link>
+                                    )}
+                                    <Link to="/api/userinfo">
+                                        <i className="bi bi-person-circle"></i> {localStorage.getItem('username')}
+                                    </Link>
+                                    <span className={`role-badge role-badge-${is_user ? is_user.toLowerCase() : 'user'}`}>
+                                        {is_user}
+                                    </span>
+                                    <Link to="/api/logout">
+                                        <i className="bi bi-box-arrow-right"></i> Logout
+                                    </Link>
+                                </>
+                            ) : (
+                                <>
+                                    <Link to="/api/auth/signup">Sign Up</Link>
+                                    <Link to="/api/auth/signin">Log In</Link>
+                                </>
+                            )}
+                        </div>
                     </Nav>
-                </Container>
-            </Navbar>
-        </div >
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     )
 }
 export default Header

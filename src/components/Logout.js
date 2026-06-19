@@ -1,18 +1,5 @@
 import '../App.css';
-
 import { useNavigate } from 'react-router-dom';
-import arrow from "../assest/arrow.png"
-
-import bye from '../assest/tuSiJaaRaheHo.png';
-
-const styles = {
-    section: {
-        fontSize: "18px",
-        color: "#292b2c",
-        backgroundColor: "#fff",
-        padding: "20px"
-    },
-}
 
 const Logout = () => {
     const is_login = localStorage.getItem('token');
@@ -20,31 +7,33 @@ const Logout = () => {
 
     const logout = () => {
         console.log("Logging out:" + localStorage.getItem('username') )
-        localStorage.clear();  
-        navigate("/");                   
+        localStorage.clear();
+        navigate("/");
         window.location.reload();
     }
 
-
     return (
-        <div style={styles.section}>
-            <h4 ><img className="authimg" src= {arrow} alt="upload-btn" />Logout Page</h4>
-            
-            {
-                is_login ? <>
-                     <span>Are you sure, </span> <button className='byebtn' onClick={logout}><img className="byeImg" src={bye} alt="upload-btn" /></button>
-
-                </>
-                    :
-                    <>You are Already Logged-out, Login First</>
-            }
-
+        <div className="logout-wrapper">
+            <div className="logout-card">
+                <div className="logout-icon">
+                    <i className="bi bi-box-arrow-right"></i>
+                </div>
+                {is_login ? (
+                    <>
+                        <h3>Ready to leave?</h3>
+                        <p>You will be logged out of your account.</p>
+                        <button className="btn-danger-solid" onClick={logout}>
+                            <i className="bi bi-power"></i> Log Out
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <h3>You're not logged in</h3>
+                        <p>Log in to access your account.</p>
+                    </>
+                )}
+            </div>
         </div>
     )
-
 }
 export default Logout
-
-
-
-

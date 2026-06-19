@@ -1,8 +1,4 @@
 import '../App.css';
-import del from '../assest/del.jpg'
-import upload from '../assest/upload.png'
-import pencil from '../assest/pencil.png';
-import plus from '../assest/plus.png';
 import apiService from '../services/apiServices';
 import React, { useState, useEffect } from 'react';
 import apiServicelogin from '../services/apiSerivcesLogin';
@@ -137,123 +133,148 @@ const Home = () => {
     };
 
     return (
-        <div className="home-container">
+        <div className="page-container">
+            <h4 className="section-title">
+                <i className="bi bi-chat-square-text" style={{ color: 'var(--primary)', marginRight: '0.5rem' }}></i>
+                Discussion Forum
+            </h4>
 
-            {is_login ? (
-                <>
-                    {is_user === "USER" ? (
-                        <div className="input-wrapper">
-                            <input
-                                className="form-control new-question-input"
-                                onChange={(e) => setContent({ content: e.target.value })}
-                                type="text"
-                                placeholder="Add new Question"
-                            />
+            {is_login && is_user === "USER" && (
+                <div className="ask-section">
+                    <h5><i className="bi bi-plus-circle" style={{ marginRight: '0.4rem' }}></i>Ask a Question</h5>
+                    <div className="input-group-custom">
+                        <input
+                            onChange={(e) => setContent({ content: e.target.value })}
+                            type="text"
+                            placeholder="What's on your mind?"
+                        />
+                        <button className="btn-primary-custom" onClick={() => addQue()}>
+                            <i className="bi bi-send"></i> Post
+                        </button>
+                    </div>
+                </div>
+            )}
 
-                            <button className='add-question-btn' onClick={() => addQue()} ><img className="upload-btn-img" src={upload} alt="upload-" /></button>
-                            <hr />
-                        </div>
-                    ) : ""}
+            {!is_login && (
+                <div className="auth-alert" style={{ marginBottom: '1.5rem' }}>
+                    <i className="bi bi-info-circle" style={{ marginRight: '0.4rem' }}></i>
+                    You're browsing as a guest. Log in to ask questions and participate.
+                </div>
+            )}
 
-                </>
-            ) : <h4 >Basic User view</h4>
-            }
-            {data.map((question) => (
-                <div key={question.id} className="question-container">
-                    <hr />
-                    <h6>
-                        <span className="highlighted-text">{question.content}</span> <span className="user-detail">- Posted by <b>{question.user.email}</b> on {question.date} </span>
-                        {
-                            is_username === question.user.email ?
-                                <button className="delete-btn" onClick={() => deleteQbyuser(question.id)}>
-                                    <img className="delimg" src={del} alt="delete-btn" />
+            {data.length === 0 ? (
+                <div className="empty-state">
+                    <i className="bi bi-chat-square-dots"></i>
+                    <p>No questions yet. Be the first to ask!</p>
+                </div>
+            ) : (
+                data.map((question) => (
+                    <div key={question.id} className="question-card">
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                            <div>
+                                <div className="question-content">{question.content}</div>
+                                <div className="post-meta">
+                                    <i className="bi bi-person"></i> <b>{question.user.email}</b> &middot; {question.date}
+                                </div>
+                            </div>
+                            {is_username === question.user.email && (
+                                <button className="btn-danger-custom" onClick={() => deleteQbyuser(question.id)} title="Delete question">
+                                    <i className="bi bi-trash"></i>
                                 </button>
-                                : ""
-                        } </h6>
+                            )}
+                        </div>
 
-                    {question.answer.length > 0 ?
-                        (
-                            <ul>
-                                {question.answer.map((answer) =>
-                                (
-                                    <li key={answer.id} className="answer-item">
-                                        <div>{answer.content}
-                                            <span className="user-detail"> - Posted by <b>{answer.user.email}</b> on {answer.date}</span>{
-                                                is_username === answer.user.email ?
-                                                    <button className="delete-btn" onClick={() => deleteAbyuser(answer.id)}>
-                                                        <img className="delimg" src={del} alt="delete-btn" />
-                                                    </button>
-                                                    : ""
-                                            }
-                                            {answer.replies.length > 0 ? (
-                                                <ul>
-                                                    {
-                                                        answer.replies.map((reply) =>
-                                                        (
-                                                            <li key={reply.id} className="reply-item">{reply.content}, <span className="user-detail"> {reply.user.email} </span> {
-                                                                is_username === reply.user.email ?
-                                                                    <button className="delete-btn" onClick={() => deleteRbyuser(reply.id)}>
-                                                                        <img className="delimg" src={del} alt="delete-btn" />
-                                                                    </button>
-                                                                    : ""
-                                                            }</li>
-                                                        )
-                                                        )
-                                                    }
-                                                </ul>
-                                            ) : ""}
-                                            {is_user === "USER" ? (
-                                                <div className="input-wrapper">
-                                                    <input
-                                                        className="reply-input form-control"
-                                                        type="text"
-                                                        placeholder="Add Comment to the Answer"
-                                                        onChange={(e) => setContent({ content: e.target.value, })}
-                                                    />
-                                                    <button className="upload-btn" onClick={() => addRep(answer.id)}><img className="upload-btn-img" src={plus} alt="upload-btn" /></button>
+                        {question.answer.length > 0 ? (
+                            <>
+                                <div className="answers-header">
+                                    <i className="bi bi-chat-left-text"></i> {question.answer.length} {question.answer.length === 1 ? 'Answer' : 'Answers'}
+                                </div>
+                                {question.answer.map((answer) => (
+                                    <div key={answer.id} className="answer-card">
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                            <div>
+                                                <div className="answer-content">{answer.content}</div>
+                                                <div className="post-meta">
+                                                    <i className="bi bi-person"></i> <b>{answer.user.email}</b> &middot; {answer.date}
                                                 </div>
-                                            ) : ""}
+                                            </div>
+                                            {is_username === answer.user.email && (
+                                                <button className="btn-danger-custom" onClick={() => deleteAbyuser(answer.id)} title="Delete answer">
+                                                    <i className="bi bi-trash"></i>
+                                                </button>
+                                            )}
                                         </div>
 
-                                    </li>
+                                        {answer.replies.length > 0 && (
+                                            <div style={{ marginTop: '0.5rem' }}>
+                                                {answer.replies.map((reply) => (
+                                                    <div key={reply.id} className="reply-card">
+                                                        <span>{reply.content}</span>
+                                                        <span className="post-meta" style={{ marginLeft: '0.5rem' }}>
+                                                            &mdash; <b>{reply.user.email}</b>
+                                                        </span>
+                                                        {is_username === reply.user.email && (
+                                                            <button className="btn-danger-custom" onClick={() => deleteRbyuser(reply.id)} title="Delete reply">
+                                                                <i className="bi bi-trash" style={{ fontSize: '0.75rem' }}></i>
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+
+                                        {is_user === "USER" && (
+                                            <div className="input-group-custom" style={{ marginTop: '0.5rem' }}>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Write a reply..."
+                                                    style={{ fontSize: '0.85rem', padding: '0.4rem 0.7rem' }}
+                                                    onChange={(e) => setContent({ content: e.target.value })}
+                                                />
+                                                <button className="btn-ghost" onClick={() => addRep(answer.id)}>
+                                                    <i className="bi bi-reply"></i> Reply
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
                                 ))}
-                            </ul>
+                            </>
                         ) : (
-                            <p>No Response Yet!!</p>
+                            <p className="no-answers">No responses yet</p>
                         )}
-                    {is_login ? (
-                        <>
-                            {is_user === "USER" ? (
-                                <div className="input-wrapper">
-                                    <input
-                                        className="form-control answer-input"
-                                        onChange={(e) => setContent({ content: e.target.value })}
-                                        type="text"
-                                        placeholder="your response"
-                                    />
-                                    <button className="upload-btn" onClick={() => addAns(question.id)}><img className="upload-btn-img" src={pencil} alt="upload-btn" /></button> <br /><hr />
-                                </div>
-                            ) : ""}
-                            {is_user === "MODERATOR" ? (
-                                <div className="input-wrapper">
-                                    <input
-                                        className="form-control update-question-input"
-                                        onChange={(e) => setContent({ content: e.target.value })}
-                                        type="text"
-                                        placeholder="Update Question"
-                                    />
-                                    <button onClick={() => updateQuestionByMod(question.id)} className="upload-btn" ><img className="upload-btn-img" src={pencil} alt="upload-btn" /></button>
-                                    <button onClick={() => deleteQuestionByMod(question.id)} className="upload-btn" ><img className="upload-btn-img" src={del} alt="upload-btn" /></button>
-                                </div>
-                            ) : ""}
 
-                        </>
-                    ) : ""}
+                        {is_login && is_user === "USER" && (
+                            <div className="input-group-custom" style={{ marginTop: '0.75rem' }}>
+                                <input
+                                    onChange={(e) => setContent({ content: e.target.value })}
+                                    type="text"
+                                    placeholder="Write an answer..."
+                                />
+                                <button className="btn-primary-custom" onClick={() => addAns(question.id)}>
+                                    <i className="bi bi-pencil"></i> Answer
+                                </button>
+                            </div>
+                        )}
 
-                </div>
-            ))}
+                        {is_login && is_user === "MODERATOR" && (
+                            <div className="input-group-custom" style={{ marginTop: '0.75rem' }}>
+                                <input
+                                    onChange={(e) => setContent({ content: e.target.value })}
+                                    type="text"
+                                    placeholder="Update this question..."
+                                />
+                                <button className="btn-primary-custom" onClick={() => updateQuestionByMod(question.id)}>
+                                    <i className="bi bi-pencil-square"></i> Update
+                                </button>
+                                <button className="btn-danger-solid" onClick={() => deleteQuestionByMod(question.id)}>
+                                    <i className="bi bi-trash"></i> Delete
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                ))
+            )}
         </div>
-
     );
 };
 export default Home
